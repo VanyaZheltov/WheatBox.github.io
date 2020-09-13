@@ -15,6 +15,7 @@
 		<br>
 			<ul>
 				<li>Enter your name: <input type="text" ng-model="name" ng-init="droppedwheat=0"></li>
+				<p>It will be used for saves</p>
 				<li>Your name: {{ name }}</li>
 			</ul>
 		</br>
@@ -26,7 +27,7 @@
 			    </tr>
 			</thead>
 			<tbody>
-				<tr><td >Wheat</td><td ng-bind="wheat"></td></tr>
+				<tr><td>Wheat</td><td ng-bind="wheat"></td></tr>
 				<tr><td>Wheat per click</td><td ng-bind="salary"></td></tr>
 				<tr><td>Dropped Wheat</td><td ng-bind="droppedwheat"></td></tr>
 			</tbody>
