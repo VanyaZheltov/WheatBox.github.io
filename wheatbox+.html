@@ -39,7 +39,6 @@
 			<img style="width:100px;" ng-click="wheat = wheat + salary" src="https://vignette.wikia.nocookie.net/minecraft/images/2/2e/150px-Wheat.png/revision/latest/top-crop/width/300/height/300?cb=20190618105949" >
 		</div>
 		<button class="btn btn-dark" ng-click="droppedwheat = wheat; wheat = wheat - wheat;">Drop all wheat</button>
-
 	</div>
 
 	
@@ -48,14 +47,18 @@
 	var salary = 1;
 	var canupgrade = true;
 	var upgrade_cost = 10;
-
+	var debug_mod = false;
 	var app = angular.module('myApp', []);
 	app.controller('myCtrl', function($scope) {
 	    $scope.name= "John Doe";
 	    $scope.wheat = wheat;
 	    $scope.salary = salary;
 	    $scope.upgrade_cost = upgrade_cost;
-
+	    $scope.debug_mod = debug_mod;
+	    $scope.enabledebug = function enabledebug() {
+	    	alert(debug_mod? 'Дебаг включён' : 'Дебаг выключен');
+	    	debug_mod = !debug_mod;
+	    }
 	});
 	</script>
 	

@@ -12,24 +12,33 @@
 		<br>
 			<ul>
 				<li>Enter your name: <input type="text" ng-model="name" ng-init="droppedwheat=0"></li>
+				<p>It will be used for saves later</p>
 				<li>Your name: {{ name }}</li>
+				<li>Enter promo: <input type="text" ng-model="promo"></li>
 			</ul>
 		</br>
-		
 		<p>Your wheat: <span ng-bind="wheat" ></span></p>
 		<p>Wheat per click: <span ng-bind="salary"></span></p>
 		<p>You dropped: <span ng-bind="droppedwheat"></span> wheat</p>
 		<button ng-click="wheat = wheat + salary">Add wheat</button>
 		<button ng-click="droppedwheat = wheat; wheat = wheat - wheat;">Drop all wheat</button>
-		<button ng-show="wheat >= upgrade_cost" ng-click="salary = salary + 1; wheat = wheat - upgrade_cost; upgrade_cost = upgrade_cost + 2">Upgrade ({{upgrade_cost}})</button>
-		<button ng-show="wheat >= upgrade_cost * 100;" ng-click="salary = salary + 10; wheat = wheat - upgrade_cost * 10; upgrade_cost = upgrade_cost + 20">Upgrade 10({{upgrade_cost * 10}} wheat)</button>
-
+		<button ng-show="wheat >= upgrade_cost" ng-click="salary = salary + 1; wheat = wheat - upgrade_cost; upgrade_cost = upgrade_cost + 2">Upgrade ({{upgrade_cost}} wheat)</button>
+		<button ng-show="wheat >= upgrade_cost * 10;" ng-click="salary = salary + 10; wheat = wheat - upgrade_cost * 10; upgrade_cost = upgrade_cost + 20">Upgrade 10({{upgrade_cost * 10}} wheat)</button>
+		<button ng-show="promo=='operator'" ng-click="is_debug = !is_debug">Debug</button>
+		<p ng-show = "is_debug">Debug Mod</p>
+		<div ng-show="is_debug">
+			<button ng-click="wheat = wheat + 10">Add 10 wheat</button>
+			<button ng-click="wheat = wheat + 50">Add 50 wheat</button>
+			<button ng-click="wheat = wheat + 100">Add 100 wheat</button>
+		</div>
 	</div>
 
 	
 	<script>
 	var wheat = 0;
 	var upgrade_cost = 10;
+	var debug_mod = false;
+	var promo = ''
 	var salary = 1;
 	var app = angular.module('myApp', []);
 	app.controller('myCtrl', function($scope) {
@@ -37,6 +46,9 @@
 	    $scope.wheat = wheat;
 	    $scope.salary = salary;
 	    $scope.upgrade_cost = upgrade_cost;
+	    $scope.is_debug = debug_mod;
+	    $scope.promo = promo;
+
 	});
 
 	</script>
