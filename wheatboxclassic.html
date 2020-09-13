@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<title>WheatBox</title>
+</head>
+<body> 
+	<div ng-app="myApp" ng-controller='myCtrl' id='showhide'>
+		<br>
+			<ul>
+				<li>Enter your name: <input type="text" ng-model="name" ng-init="droppedwheat=0"></li>
+				<li>Your name: {{ name }}</li>
+			</ul>
+		</br>
+		
+		<p>Your wheat: <span ng-bind="wheat" ></span></p>
+		<p>Wheat per click: <span ng-bind="salary"></span></p>
+		<p>You dropped: <span ng-bind="droppedwheat"></span> wheat</p>
+		<button ng-click="wheat = wheat + salary">Add wheat</button>
+		<button ng-click="droppedwheat = wheat; wheat = wheat - wheat;">Drop all wheat</button>
+		<button ng-show="wheat >= 10" ng-click="salary = salary + 1; wheat = wheat - 10">Upgrade(10 wheat)</button>
+	</div>
+
+	
+	<script>
+	var wheat = 0;
+	var salary = 1;
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope) {
+	    $scope.name= "John Doe";
+	    $scope.wheat = wheat;
+	    $scope.salary = salary;
+	});
+
+	</script>
+</body>
+</html>
