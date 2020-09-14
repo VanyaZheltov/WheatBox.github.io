@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="./css/page.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>UltraWheatBox</title>
+</head>
+<body style="height: 100%;">
+	<div ng-app="myApp" ng-controller='myCtrl' class="maindiv">
+		<p><img src="./images/wheat.png" alt="Your wheat: " class="icon">  <span class="countfont" ng-bind="wheat"></span></p>
+    <p><img src="./images/emerald.png" class="icon" alt="">  <span class="countfont" ng-bind="money"></span></p>
+
+    <p ng-show="iswooden"><img src="./images/woodenhoe.png" class="icon">lvl: <span class="countfont">{{hoepower}}.{{salary}}</span></p>
+    <p ng-show="isstone"><img src="./images/stonehoe.png" class="icon">lvl: <span class="countfont">{{hoepower}}.{{salary}}</span></p>
+		<p ng-show="isiron"><img src="./images/ironhoe.png" class="icon">lvl: <span class="countfont">{{hoepower}}.{{salary}}</span></p>
+
+		<button ng-click="wheat = wheat + salary">Add wheat</button>
+		<button ng-click="money = money + (wheat  / 10); wheat = wheat - wheat">Sell all wheat</button>
+		<button ng-show="wheat >= upgrade_cost" ng-click="salary = salary + hoepower; wheat = wheat - upgrade_cost; upgrade_cost = upgrade_cost + 20">Upgrade ({{upgrade_cost}} wheat)</button>
+		<button ng-show="wheat >= upgrade_cost * 10;" ng-click="salary = salary + 10; wheat = wheat - upgrade_cost * 10; upgrade_cost = upgrade_cost + 20">Upgrade 10({{upgrade_cost * 10}} wheat)</button>
+
+    <div class="maindiv" id="market" ng-show="money >= 10">
+      <img src="./images/villager.png" style="height: 100%" alt="">
+      <p class="child"><img src="./images/wheat.png" alt=""><button ng-click="wheat = wheat + (money * 10); money = money - money">Buy <img src="./images/wheat.png" class="shopitem">(All <img src="./images/emerald.png" class="shopitem">)</button></p>
+      <p class="child" ng-show="iswooden == true; money >= 100"><img src="./images/stonehoe.png"><button ng-click="iswooden = false; isstone = true; money = money - 100; hoepower = 2; salary = hoepower; upgrade_cost = 30">Buy (100 <img src="./images/emerald.png" class="shopitem">)</button></p>
+			<p class="child" ng-show="isstone == true; money >= 200"><img src="./images/ironhoe.png"><button ng-click="iswooden = false; isstone = false; isiron = true; money = money - 200; hoepower = 3; salary = hoepower; upgrade_cost = 50">Buy (200 <img src="./images/emerald.png" class="shopitem">)</button></p>
+
+    </div>
+  </div>
+
+	<script>
+  	var wheat = 0;
+  	var upgrade_cost = 10;
+  	var debug_mod = false;
+    var money = 200;
+  	var promo = ''
+  	var salary = 1;
+    var iswood = true;
+    var isstone = false;
+    var isiron = false;
+    var hoepower = 1;
+  	var app = angular.module('myApp', []);
+  	app.controller('myCtrl', function($scope) {
+  	    $scope.name= "John Doe";
+  	    $scope.wheat = wheat;
+  	    $scope.salary = salary;
+        $scope.money = money;
+        $scope.iswooden = iswood;
+        $scope.hoepower = hoepower;
+  	    $scope.upgrade_cost = upgrade_cost;
+
+  	});
+
+	</script>
+</body>
+</html>

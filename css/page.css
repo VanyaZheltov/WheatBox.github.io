@@ -1,0 +1,23 @@
+.maindiv{
+  background: red;
+  height: 50%;
+}
+img.icon{
+  height: 32px;
+  width: 32px;
+}
+.countfont{
+  font-family: sans-serif;
+  font-weight: bolder;
+  font-variant: small-caps;
+  color: whitesmoke;
+}
+img.shopitem{
+  height: 16px;
+  width: 16px;
+}
+
+.child
+{
+	display: inline-block;
+}
